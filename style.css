@@ -1,0 +1,261 @@
+/* --------------------------------------------
+   GLOBAL RESET & BASE STYLES
+   -------------------------------------------- */
+   * {
+    box-sizing: border-box;              /* Consistent box model prevents layout surprises */
+    font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(145deg, #f6f8fc 0%, #e9ecf2 100%); /* Soft gradient for depth */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* --------------------------------------------
+     CALCULATOR CONTAINER
+     -------------------------------------------- */
+  .calculator {
+    background: #1e2a3a;                 /* Dark slate: reduces glare, professional look */
+    border-radius: 2rem;                 /* Smooth modern shape */
+    padding: 1.5rem;
+    box-shadow: 
+      0 20px 35px rgba(0, 0, 0, 0.3),   /* Outer drop shadow for “floating” effect */
+      inset 0 1px 2px rgba(255, 255, 255, 0.08); /* Subtle top highlight for depth */
+    width: 360px;                       /* Classic calculator width, comfortable for fingers */
+    max-width: 95vw;                    /* Shrinks on very small screens */
+  }
+  
+  /* --------------------------------------------
+     DISPLAY AREAS
+     -------------------------------------------- */
+  /* Main output — recessed “screen” look */
+  .display {
+    background: #0f1a26;                 /* Darker inset color creates depth */
+    color: #b7e4ff;                      /* LCD-style blue for readability & nostalgia */
+    font-size: 2.8rem;
+    font-weight: 500;
+    text-align: right;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 1.2rem;
+    box-shadow: 
+      inset 0 4px 8px rgba(0,0,0,0.5),  /* Deep inner shadow: recessed effect */
+      0 1px 0 #3a4c62;                   /* Subtle bottom highlight */
+    min-height: 5.2rem;                  /* Prevents layout bounce when switching from empty to full */
+    word-wrap: break-word;
+    overflow-x: auto;                    /* Allow horizontal scroll for very long numbers */
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(183, 228, 255, 0.3); /* Soft glow simulates LCD */
+  }
+  
+  /* Custom scrollbar: slim, matches dark theme */
+  .display::-webkit-scrollbar {
+    height: 4px;
+    background: transparent;
+  }
+  .display::-webkit-scrollbar-thumb {
+    background: #3a4c62;
+    border-radius: 4px;
+  }
+  
+  /* Expression preview — subtle secondary information */
+  .expression {
+    background: transparent;
+    color: #7f9fbf;                      /* Muted blue so main display stands out */
+    font-size: 1.2rem;
+    text-align: right;
+    padding: 0.2rem 0.5rem;
+    min-height: 1.8rem;                  /* Keeps space reserved even when empty */
+    word-wrap: break-word;
+    overflow-x: auto;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #3a4c62;    /* Subtle divider between expression and main display */
+    margin-bottom: 0.3rem;
+  }
+  
+  /* --------------------------------------------
+     BUTTON GRIDS
+     -------------------------------------------- */
+  /* Advanced functions row — tighter spacing to distinguish from main grid */
+  .functions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Memory row — slightly tighter spacing for a compact feel */
+  .memory {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Main button grid — generous spacing for easy tapping */
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+  
+  /* --------------------------------------------
+     BASE BUTTON STYLING
+     -------------------------------------------- */
+  /* All buttons share this 3D raised look */
+  .btn {
+    background: #2e3f55;
+    border: none;
+    border-bottom: 3px solid #121b26;    /* Bottom border creates 3D thickness */
+    color: #f0f6ff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 0.9rem 0.4rem;
+    border-radius: 1.2rem;               /* Rounded corners match calculator aesthetic */
+    cursor: pointer;
+    box-shadow: 
+      0 5px 0 #0f1722,                   /* Heavy shadow at bottom simulates raised button */
+      0 4px 6px rgba(0,0,0,0.3);        /* Ambient shadow for depth */
+    transition: all 0.05s ease-in;       /* Fast press animation */
+    text-align: center;
+    user-select: none;                   /* Prevent accidental text selection on double-click */
+  }
+  
+  /* Memory buttons — slightly muted to indicate secondary function */
+  .btn.memory-btn {
+    background: #1f3a4e;
+    border-bottom-color: #0f1f2c;
+    color: #cde3f5;
+    font-size: 1.4rem;
+    padding: 0.6rem 0.2rem;
+  }
+  
+  /* Advanced function buttons — subtle color differentiation */
+  .btn.function {
+    background: #3a4c62;
+    border-bottom-color: #1f2c3a;
+    color: #d0e4ff;
+    font-size: 1.6rem;
+    padding: 0.7rem 0.2rem;
+  }
+  
+  /* Keyboard focus ring — accessibility: visible only when tabbing */
+  .btn:focus-visible {
+    outline: 3px solid #f39c12;          /* Orange ring matches operator buttons */
+    outline-offset: 2px;
+    box-shadow: 0 5px 0 #0f1722, 0 0 0 2px #1e2a3a;
+  }
+  
+  /* Button press: simulate physical depression */
+  .btn:active {
+    transform: translateY(3px);          /* Moves button down, reducing perceived height */
+    box-shadow: 
+      0 2px 0 #0f1722,                   /* Shadow shrinks to match new position */
+      0 2px 4px rgba(0,0,0,0.3);
+    border-bottom-width: 2px;           /* Thinner bottom border enhances realism */
+    transition: all 0.02s ease-out;      /* Snappier release than push */
+  }
+  
+  /* Operator buttons — high contrast orange for easy identification */
+  .btn.operator {
+    background: #f39c12;
+    color: #0f1a26;
+    border-bottom-color: #b36b00;
+  }
+  
+  /* Action buttons (C, =) — bold, urgent colors */
+  .btn.action {
+    background: #d35400;
+    color: white;
+    border-bottom-color: #8e3a00;
+  }
+  
+  /* Equals: spans two rows for a prominent, easy‑to‑hit target */
+  .btn.equals {
+    grid-row: span 2;
+    background: #27ae60;                 /* Green: positive action, stands out */
+    border-bottom-color: #1a7943;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Hover effect — subtle brightness increase for feedback */
+  .btn:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* Disabled state — can be applied dynamically if needed */
+  .btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  /* --------------------------------------------
+     FOOTER & MEMORY INDICATOR
+     -------------------------------------------- */
+  /* Footer: separates memory readout and author credit */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0 0.3rem;
+    color: #7f9fbf;
+    font-size: 0.9rem;
+    border-top: 1px solid #3a4c62;       /* Subtle divider from button grid */
+    padding-top: 0.8rem;
+  }
+  
+  /* Memory indicator: pill‑shaped badge with contrast color */
+  .memory-indicator {
+    background: #0f1a26;
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;                 /* Fully rounded pill */
+    color: #f39c12;                      /* Orange – same as operator, draws attention */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  /* Author credit — subtle until hovered */
+  .author {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .author:hover {
+    opacity: 1;
+  }
+  
+  /* --------------------------------------------
+     RESPONSIVE TWEAKS
+     -------------------------------------------- */
+  /* Adjust for small mobile screens (≤400px) */
+  @media (max-width: 400px) {
+    .calculator { 
+      padding: 1rem; 
+    }
+    .display { 
+      font-size: 2.4rem;                /* Slightly smaller for narrow screens */
+    }
+    .btn { 
+      font-size: 1.5rem; 
+      padding: 0.7rem 0.2rem; 
+    }
+    .btn.function { 
+      font-size: 1.3rem; 
+      padding: 0.5rem 0.1rem; 
+    }
+    .btn.memory-btn { 
+      font-size: 1.2rem; 
+      padding: 0.5rem 0.1rem; 
+    }
+    .footer { 
+      font-size: 0.8rem; 
+    }
+  }

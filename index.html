@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator · Portfolio</title>
+  <meta name="description" content="A fully functional calculator built using HTML, CSS, and JavaScript. Features advanced math, memory functions, and keyboard support.">
+  <meta name="author" content="Gavin Fecko">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main calculator container — holds everything -->
+  <div class="calculator">
+    
+    <!-- Expression display: shows the ongoing equation (e.g., "5 + 3") -->
+    <div id="expression" class="expression"></div>
+    
+    <!-- Main output display: shows current input or result -->
+    <div id="display" class="display">0</div>
+    
+    <!-- Advanced Functions Row: sqrt, %, +/-, backspace -->
+    <div class="functions">
+      <button class="btn function" data-action="sqrt" aria-label="square root">√</button>
+      <button class="btn function" data-action="percent" aria-label="percent">%</button>
+      <button class="btn function" data-action="toggleSign" aria-label="plus minus">+/−</button>
+      <button class="btn function" data-action="backspace" aria-label="backspace">⌫</button>
+    </div>
+    
+    <!-- Memory Functions Row: M+, M-, MR, MC -->
+    <div class="memory">
+      <button class="btn memory-btn" data-memory="add" aria-label="memory add">M+</button>
+      <button class="btn memory-btn" data-memory="subtract" aria-label="memory subtract">M-</button>
+      <button class="btn memory-btn" data-memory="recall" aria-label="memory recall">MR</button>
+      <button class="btn memory-btn" data-memory="clear" aria-label="memory clear">MC</button>
+    </div>
+    
+    <!-- Main Button Grid: numbers, operators, clear, equals -->
+    <div class="buttons">
+      
+      <!-- Row 1: Clear (C) and operators ( / * - ) -->
+      <button class="btn action" data-action="clear">C</button>
+      <button class="btn operator" data-operator="/" aria-label="divide">/</button>
+      <button class="btn operator" data-operator="*" aria-label="multiply">*</button>
+      <button class="btn operator" data-operator="-" aria-label="subtract">-</button>
+      
+      <!-- Row 2: 7 8 9 + -->
+      <button class="btn number" data-value="7">7</button>
+      <button class="btn number" data-value="8">8</button>
+      <button class="btn number" data-value="9">9</button>
+      <button class="btn operator" data-operator="+" aria-label="add">+</button>
+      
+      <!-- Row 3: 4 5 6 and Equals (equals spans rows 3 & 4 via CSS) -->
+      <button class="btn number" data-value="4">4</button>
+      <button class="btn number" data-value="5">5</button>
+      <button class="btn number" data-value="6">6</button>
+      <button class="btn action equals" data-action="calculate" aria-label="equals">=</button>
+      
+      <!-- Row 4: 1 2 3 (column 4 occupied by the spanned equals button) -->
+      <button class="btn number" data-value="1">1</button>
+      <button class="btn number" data-value="2">2</button>
+      <button class="btn number" data-value="3">3</button>
+      <!-- No button here — equals continues to fill this cell -->
+      
+      <!-- Row 5: 0 00 . (column 4 still equals) -->
+      <button class="btn number" data-value="0">0</button>
+      <button class="btn number" data-value="00">00</button>
+      <button class="btn number" data-value=".">.</button>
+      
+    </div>
+    
+    <!-- Footer: Memory indicator and author credit -->
+    <div class="footer">
+      <span id="memory-indicator" class="memory-indicator">M: 0</span>
+      <span class="author">© 2026 Gavin Fecko</span>
+    </div>
+  </div>
+  
+  <!-- External JavaScript file containing all calculator logic -->
+  <script src="script.js"></script>
+</body>
+</html>
