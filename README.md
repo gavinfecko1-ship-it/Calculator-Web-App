@@ -7,7 +7,7 @@ A fully functional calculator built from scratch using vanilla HTML, CSS, and Ja
 
 ---
 
-### 🚀 [Try it live](https://gavinfecko1-ship-it.github.io/calculator-portfolio/)
+### 🚀 [Try it live](https://gavinfecko1-ship-it.github.io/Calculator-Web-App/)
 
 ## 🔧 Features
 
@@ -60,7 +60,7 @@ No frameworks, no dependencies — just plain HTML, CSS, and JS.
 ## 📂 Project Structure
 
 ```
-Calculator-Portfolio/
+Calculator-Web-App/
 ├── index.html      # Main HTML file
 ├── style.css       # All styling
 ├── script.js       # Calculator logic
